@@ -40,7 +40,7 @@ def main():
     parser.add_argument('--ood_vul_file', type=str, default='reveal_vul.jsonl', help='OOD vulnerable file')
     parser.add_argument('--pretrained_model', type=str, default='model.bin', help='pretrained codebert model')
     parser.add_argument('--train_file', type=str, default='adv_examples.jsonl', help='train file')
-    parser.add_argument('--batch_size', type=int, default=2, help='batch size')
+    parser.add_argument('--batch_size', type=int, default=32, help='batch size')
     parser.add_argument('--model_type', choices=['sia', 'quad'])
     args = parser.parse_args()
     
