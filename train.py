@@ -3,7 +3,7 @@ from torch.utils.data import Dataset, DataLoader, RandomSampler, random_split, d
 from triplet_loss import *
 from Siamese import SiameseModel, QuadrupletModel
 import lightning.pytorch as pl
-from lightning.pytorch.loggers import wandb
+#from lightning.pytorch.loggers import wandb
 from lightning.pytorch.callbacks.early_stopping import EarlyStopping
 from lightning.pytorch.callbacks import ModelCheckpoint
 from utils import TextDataset, AdvDataset, load_feature_extractor
@@ -26,10 +26,11 @@ class ParallelCollector:
 def train(model_type, feature_extractor, compacted_train_loader, compacted_val_loader):
     model_dict = {"sia" : SiameseModel, "quad" : QuadrupletModel}
     model = model_dict[model_type](feature_extractor)
-    logger = wandb.WandbLogger(project='inputReflector', name=model_type, log_model='all')
+    #logger = wandb.WandbLogger(project='inputReflector', name=model_type, log_model='all')
     checkpoint_callback = ModelCheckpoint(monitor="val_loss", mode="min")
     early_stopping = EarlyStopping(monitor='val_loss', patience=20, verbose=True, mode='min')
-    trainer = pl.Trainer(callbacks=[early_stopping,checkpoint_callback], logger=logger, max_epochs=200, devices="auto", accelerator="auto")
+    #trainer = pl.Trainer(callbacks=[early_stopping,checkpoint_callback], logger=logger, max_epochs=200, devices="auto", accelerator="auto")
+    trainer = pl.Trainer(callbacks=[early_stopping,checkpoint_callback], max_epochs=200, devices="auto", accelerator="auto")
     trainer.fit(model, train_dataloaders=compacted_train_loader, val_dataloaders=compacted_val_loader)
     return model
 
