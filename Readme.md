@@ -45,5 +45,7 @@ Program will automatically divide `adv_examples.jsonl` into a training set and a
 
 Once the training is done, you can use `InputReflector.ipynb` to inference, see the comments inside to know the details.
 
+## Pretrained Model
 
-
+[Siamese Network](https://drive.google.com/file/d/1Ix4LKUOMqw_E2UmjnO-0paxrctyF81U0/view?usp=sharing)
+[Quadruplet Network](https://drive.google.com/file/d/1-4PQWpd8o2prXVv9DTQBN4C3v4pQfUZS/view?usp=sharing)
